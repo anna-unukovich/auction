@@ -1,8 +1,10 @@
 package com.unukovich.auction;
 
 import com.unukovich.SpringFactory;
+import com.unukovich.auction.model.Auction;
 import com.unukovich.auction.model.Balance;
 import com.unukovich.auction.model.User;
+import com.unukovich.auction.service.AuctionService;
 import com.unukovich.auction.service.BalanceService;
 import com.unukovich.auction.service.UserService;
 import java.util.Date;
@@ -74,7 +76,33 @@ public class AppTest {
         System.out.println("create balance done. Balance id: " + userId);
         
         balanceService.deleteBalance(balance);
-        System.out.println("Delete balance done!");       
+        System.out.println("Delete balance done!");
+        
+        
+        // Test belence --------------------------------------------------------
+        
+        AuctionService auctionService = (AuctionService) SpringFactory.getspringApplicationContext().getBean("auctionService");
+
+        Auction auction = new Auction();
+        auction.setId(0);
+        auction.setName("Auction 0");
+        auction.setDescription("Auction description 0");
+        auction.setCreatorId(0);
+        auction.setStartPrice(100);
+        auction.setCurrentPrice(100);
+        auction.setCreatedDate(new Date());
+        auction.setIsFinal(0);
+        auction.setWinDate(new Date());
+        auction.setWinDate(null);          
+        
+              
+
+        auctionService.createAuction(auction);
+        int auctionId = auction.getId();
+        System.out.println("create auction done. Auction id: " + auctionId);
+        
+        //auctionService.deleteAuction(auction);
+        //System.out.println("Delete balance done!"); 
     }
 
 }

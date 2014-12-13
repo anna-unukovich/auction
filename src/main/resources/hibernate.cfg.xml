@@ -11,5 +11,6 @@
     
     <mapping class="com.unukovich.auction.model.User" />
     <mapping class="com.unukovich.auction.model.Balance" />
+    <mapping class="com.unukovich.auction.model.Auction" />
   </session-factory>
 </hibernate-configuration>

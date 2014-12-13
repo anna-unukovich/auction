@@ -52,11 +52,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>All auction's</td>
+                    <td>My auction's</td>
                     <td>
-                        <form action="all-auction-menu.jsp">
+                        <form action="myauctions-menu.jsp">
                             <button class="btn btn-info btn-block" type="submit">
-                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> All auction's menu
+                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> My auction's menu
                             </button>
                         </form>
                     </td>    
