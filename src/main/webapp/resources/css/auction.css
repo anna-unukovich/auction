@@ -1,0 +1,15 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.container{
+  width: 512px;
+  padding: 15px;
+  background-color: rgb(255,240,240);
+}
+
+btn btn-info{
+    width: 256px;    
+}
+
