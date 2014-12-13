@@ -10,5 +10,8 @@
             
     <bean id="userService"
           class="com.unukovich.auction.service.implementation.UserServiceImplementation"/>
+    
+        <bean id="balanceService"
+          class="com.unukovich.auction.service.implementation.BalanceServiceImplementation"/>
 
 </beans>

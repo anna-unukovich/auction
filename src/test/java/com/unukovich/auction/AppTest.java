@@ -1,7 +1,9 @@
 package com.unukovich.auction;
 
 import com.unukovich.SpringFactory;
+import com.unukovich.auction.model.Balance;
 import com.unukovich.auction.model.User;
+import com.unukovich.auction.service.BalanceService;
 import com.unukovich.auction.service.UserService;
 import java.util.Date;
 import static org.junit.Assert.fail;
@@ -57,8 +59,22 @@ public class AppTest {
         userService.deleteUser(user);
         System.out.println("Delete user done!");
 
+        // Test belence --------------------------------------------------------
         
+        BalanceService balanceService = (BalanceService) SpringFactory.getspringApplicationContext().getBean("balanceService");
 
+        Balance balance = new Balance();
+        balance.setId(0);
+        balance.setUserId(0);
+        balance.setBalance(1000);
+        balance.setRegistrationDate(new Date());
+
+        balanceService.createBalance(balance);
+        int balanceID = balance.getId();
+        System.out.println("create balance done. Balance id: " + userId);
+        
+        balanceService.deleteBalance(balance);
+        System.out.println("Delete balance done!");       
     }
 
 }

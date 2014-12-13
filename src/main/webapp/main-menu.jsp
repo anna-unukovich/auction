@@ -44,7 +44,7 @@
                 <tr>
                     <td>Money balance</td>
                     <td>
-                        <form action="balance.jsp?paramName=123">
+                        <form action="balance.jsp">
                             <button class="btn btn-info btn-block" type="submit">
                                 <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Balance menu
                             </button>
@@ -54,11 +54,11 @@
                 <tr>
                     <td>All auction's</td>
                     <td>
-                        
+                        <form action="all-auction-menu.jsp">
                             <button class="btn btn-info btn-block" type="submit">
                                 <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> All auction's menu
                             </button>
-
+                        </form>
                     </td>    
                 </tr>
                 <tr>
