@@ -57,8 +57,8 @@
             <table class="table table-striped">
                 <tr>
                     <th>bet id</th>
-                    <th>user id</th>
                     <th>price</th>
+                    <th>user_id</th>
                 </tr>
                 <%
                     BetService betService = (BetService) SpringFactory.getspringApplicationContext().getBean("betService");
