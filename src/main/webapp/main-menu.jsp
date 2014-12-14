@@ -62,11 +62,11 @@
                     </td>    
                 </tr>
                 <tr>
-                    <td>My auction's</td>
+                    <td>Bet's menu</td>
                     <td>
-                        <form action="payment-menu.jsp">
+                        <form action="bet-menu.jsp">
                             <button class="btn btn-info btn-block">
-                                <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> My auction's menu
+                                <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span> Bet's menu
                             </button>
                         </form>
                     </td>
@@ -112,7 +112,7 @@
 
             </table>
 
-            <form class="form-signin" method="GET" action="/onlinebanking/webresources/logout">
+            <form class="form-signin" method="GET" action="/auction/webresources/logout">
                 <button class="btn btn-info" type="submit">
                     <span class="glyphicon glyphicon-off"></span> Log out
                 </button>

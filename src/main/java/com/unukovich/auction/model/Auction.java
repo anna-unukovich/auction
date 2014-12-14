@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity 
-@Table (name="auction")
+@Table (name="auctions")
 public class Auction {
     
     public static final String DEFAULT_NAME = "default name";

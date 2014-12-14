@@ -15,7 +15,7 @@
 
         <link rel="stylesheet" href="resources/css/bootstrap.min.css">
         <script src="resources/js/bootstrap.min.js"></script>
-        <link href="resources/css/bank.css" rel="stylesheet">
+        <link href="resources/css/auction.css" rel="stylesheet">
 
         <title>Users menu page</title>
     </head>

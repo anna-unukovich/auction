@@ -3,9 +3,13 @@ package com.unukovich.auction;
 import com.unukovich.SpringFactory;
 import com.unukovich.auction.model.Auction;
 import com.unukovich.auction.model.Balance;
+import com.unukovich.auction.model.Bet;
+import com.unukovich.auction.model.Stat;
 import com.unukovich.auction.model.User;
 import com.unukovich.auction.service.AuctionService;
 import com.unukovich.auction.service.BalanceService;
+import com.unukovich.auction.service.BetService;
+import com.unukovich.auction.service.StatService;
 import com.unukovich.auction.service.UserService;
 import java.util.Date;
 import static org.junit.Assert.fail;
@@ -101,8 +105,51 @@ public class AppTest {
         int auctionId = auction.getId();
         System.out.println("create auction done. Auction id: " + auctionId);
         
-        //auctionService.deleteAuction(auction);
-        //System.out.println("Delete balance done!"); 
+        
+        // Test bet  -----------------------------------------------------------
+        
+        BetService betService = (BetService) SpringFactory.getspringApplicationContext().getBean("betService");
+
+        Bet bet = new Bet();
+        bet.setId(userId);
+        bet.setUser_id(0);
+        bet.setAuction_id(0);
+        Integer betPrice = 150;
+        bet.setPrice(betPrice);
+        
+        auction = auctionService.readAuction(auctionId);
+        auction.setCurrentPrice(betPrice);
+        
+        bet.setDate(new Date());        
+              
+
+        betService.createBet(bet);
+        int betId = bet.getId();
+        System.out.println("create bet done. Bet id: " + betId);
+        
+        betService.deleteBet(bet);
+        System.out.println("Delete bet done!");
+        
+        auctionService.deleteAuction(auction);
+        System.out.println("Delete auction done!"); 
+        
+        
+        // Test stat  ----------------------------------------------------------
+        
+        StatService statService = (StatService) SpringFactory.getspringApplicationContext().getBean("statService");
+
+        Stat stat = new Stat();
+        stat.setId(userId);
+        stat.setDescription("Test stat description.");
+        stat.setDate(new Date());
+              
+
+        statService.createStatr(stat);
+        int statId = stat.getId();
+        System.out.println("create stat done. Stat id: " + statId);
+        
+        statService.deleteStat(stat);
+        System.out.println("Delete stat done!"); 
     }
 
 }

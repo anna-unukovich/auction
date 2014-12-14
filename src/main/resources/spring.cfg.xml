@@ -15,6 +15,12 @@
           class="com.unukovich.auction.service.implementation.BalanceServiceImplementation"/>
         
         <bean id="auctionService"
-          class="com.unukovich.auction.service.implementation.AuctionServiceImplementation"/>        
+          class="com.unukovich.auction.service.implementation.AuctionServiceImplementation"/>
+        
+        <bean id="betService"
+          class="com.unukovich.auction.service.implementation.BetServiceImplementation"/>
+        
+        <bean id="statService"
+          class="com.unukovich.auction.service.implementation.StatServiceImplementation"/>                  
 
 </beans>

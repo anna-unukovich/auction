@@ -1,6 +1,6 @@
-<%@page import="com.unukovich.auction.model.Auction"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
+<%@page import="com.unukovich.auction.model.Auction"%>
+<%@page import="com.unukovich.auction.model.Auction"%>
 <%@page import="java.util.List"%>
 <%@page import="com.unukovich.auction.service.AuctionService"%>
 <%@page import="com.unukovich.auction.model.User"%>
@@ -16,11 +16,11 @@
         <script src="resources/js/bootstrap.min.js"></script>
         <link href="resources/css/auction.css" rel="stylesheet">
 
-        <title>My auction's menu Page</title>
+        <title>Bet's menu page</title>
     </head>
     <body>
         <div class="container">
-            <h3>Online auction's main menu</h3>
+            <h3>Bet's menu</h3>
             <br>
             <h4>
                 <span class="glyphicon glyphicon-user"></span>
@@ -33,69 +33,70 @@
 
                         String admin = user.getAdmin();
                         login += " (" + admin + ")";
-
                     }
 
                 %>
                 <%=login%>
+
             </h4>
-            
-            
+            <br>
+
+
             <table class="table table-striped">
                 <tr>
-                    <th>Auction id</th>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Start price</th>
-                    <th>Created date</th>
-                    <th>Is finished</th>
+                    <th>Current price</th>
+                    <th>Bet</th>
                 </tr>
-<%
+                <%
                     AuctionService auctionService = (AuctionService) SpringFactory.getspringApplicationContext().getBean("auctionService");
                     List<Auction> auctionsList = new ArrayList<>();
                     auctionsList = auctionService.getAllAuctions();
-                    
-                    List<Auction> currentUserAuctionsList = new ArrayList<>();
+
                     for (int i = 0; i < auctionsList.size(); i++) {
                         Auction auction = auctionsList.get(i);
-                        if (user.getId() == auction.getCreatorId()){
-                            currentUserAuctionsList.add(auction);
-                        }
-                    }
-
-                    for (int i = 0; i < currentUserAuctionsList.size(); i++) {
-                        Auction auction = currentUserAuctionsList.get(i);
                         if (auction != null) {
                             out.write("<tr>");
-                            out.write("<td>" + auction.getId() + "</td>");
                             out.write("<td>" + auction.getName() + "</td>");
                             out.write("<td>" + auction.getDescription() + "</td>");
-                            out.write("<td>" + auction.getStartPrice() + "</td>");
-                            out.write("<td>" + auction.getCreatedDate() + "</td>");
-                            int finish = auction.getIsFinal();
-                            String finishString = "not";
+                            out.write("<td>" + auction.getCurrentPrice()+ "</td>");
+                            
+                            int finish = auction.getIsFinal();                            
                             if (finish != 0) {
-                                finishString = "yes";
-                            } 
-                            out.write("<td>" + finishString + "</td>");
+                            out.write("<td>" + "FINISHED!" + "</td>");
+                            }
+                            
+                            if (user.getId() != auction.getCreatorId()){
+                            
+                            out.write("<td>" 
+                                    + "<form method=\"GET\" action=\"bet.jsp\" >"  
+                                    + "<input type=\"hidden\" name=\"auctionId\" value=\""+ auction.getId() +"\" />"
+                                    + "<button class=\"btn btn-info\" type=\"submit\">"
+                                    + "<span class=\"glyphicon glyphicon-plus\"></span> Create bet"
+                                    + "</button>"
+                                    + "</form>                                    "
+                                    + "</td>");
+                            } else {
+                            out.write("<td>" + "OWNER" + "</td>");    
+                            }
+                            
                             out.write("</tr>");
                         } else {
-                        out.write("<tr>");
-                        out.write("<td> </td>");
-                        out.write("<td> </td>");
-                        out.write("<td> </td>");
-                        out.write("<td> </td>");
-                        out.write("<td> </td>");
-                        out.write("<td> </td>");
-                        out.write("</tr>");
+                            out.write("<tr>");
+                            out.write("<td> </td>");
+                            out.write("<td> </td>");
+                            out.write("<td> </td>");
+                            out.write("<td> </td>");
+                            out.write("</tr>");
                         }
 
                         out.write("");
                     }
                 %>
             </table>
-            
-           
+
+
             <table> 
                 <tr>
                     <td>

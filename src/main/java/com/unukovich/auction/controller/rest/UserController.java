@@ -2,7 +2,11 @@ package com.unukovich.auction.controller.rest;
 
 import com.unukovich.SessionBean;
 import com.unukovich.SpringFactory;
+import com.unukovich.auction.model.Balance;
+import com.unukovich.auction.model.Stat;
 import com.unukovich.auction.model.User;
+import com.unukovich.auction.service.BalanceService;
+import com.unukovich.auction.service.StatService;
 import com.unukovich.auction.service.UserService;
 import java.net.URISyntaxException;
 import java.util.Date;
@@ -69,9 +73,41 @@ public class UserController {
             UserService userService = (UserService) SpringFactory.getspringApplicationContext().getBean("userService");
             userService.createUser(user);
             
+            System.out.println("---- Create new user from Restful. User id: " + user.getId());
+            
             SessionBean sessionBean = (SessionBean) SpringFactory.getspringApplicationContext().getBean("sessionBean");
             User currentUser = sessionBean.getCurrentUser();
-                        
+            
+            BalanceService balanceService = (BalanceService) SpringFactory.getspringApplicationContext().getBean("balanceService");
+            Balance balance = new Balance();
+            balance.setId(0);
+            balance.setUserId(user.getId());
+            balance.setRegistrationDate(date);
+            balance.setBalance(1000);
+            
+            balanceService.createBalance(balance);
+            System.out.println("---- Create new balance from Restful. Balance id: " + balance.getId());
+            
+            StatService statService = (StatService) SpringFactory.getspringApplicationContext().getBean("statService");
+            Stat stat = new Stat();
+            
+            stat.setId(0);
+            stat.setDate(new Date());
+            String descriptionString = "";
+            descriptionString = "User: " + currentUser.getName() + " create user: " + user.getName();
+            stat.setDescription(descriptionString);
+            statService.createStatr(stat);
+            System.out.println("---- Create new stat from Restful. Stat id: " + stat.getId());
+            
+            stat = new Stat();
+            stat.setId(0);
+            stat.setDate(new Date());
+            descriptionString = "";
+            descriptionString = "User: " + currentUser.getName() + " create balance. Id: " + balance.getId() + ". Balance: " + balance.getBalance();
+            stat.setDescription(descriptionString);
+            statService.createStatr(stat);
+            System.out.println("---- Create new stat from Restful. Stat id: " + stat.getId());           
+                      
             location = new java.net.URI("../user-menu.jsp");
 
         } catch (URISyntaxException ex) {

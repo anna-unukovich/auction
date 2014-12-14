@@ -10,7 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity 
-@Table (name="balance")
+@Table (name="balances")
 public class Balance {
     
     private int id;
